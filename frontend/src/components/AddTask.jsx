@@ -44,8 +44,7 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
         left: "0",
         right: "0",
         padding: "10px 0",
-        background:
-          "-moz-linear-gradient(top, rgba(30,87,153,0) 0%, rgba(41,137,216,0) 50%, rgba(34,125,203,1) 52%, rgba(125,185,232,1) 100%)",
+        background: "transparent",
       }}
     >
       <div style={{ textAlign: "center" }}>
