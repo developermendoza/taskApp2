@@ -106,7 +106,7 @@ const TaskList = ({ todoList, setTodoList }) => {
         style={{
           paddingLeft: "0",
           overflowY: "auto",
-          height: "70vh",
+          height: "65vh",
           paddingTop: "20px",
         }}
       >
