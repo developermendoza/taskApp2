@@ -37,16 +37,8 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: "0",
-        left: "0",
-        right: "0",
-        padding: "10px 0",
-      }}
-    >
-      <div style={{ textAlign: "center" }}>
+    <>
+      <div className={styles.addTaskContainer}>
         <Button className={styles.addTask} onClick={handleShow}>
           <AiOutlinePlus style={{ fontSize: "70px", padding: "5px 0" }} />
         </Button>
@@ -75,7 +67,7 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
 

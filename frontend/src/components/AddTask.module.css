@@ -17,3 +17,13 @@ button.addTask:active {
 button.addTask:hover {
   background: #00b9ff !important;
 }
+
+.addTaskContainer {
+  text-align: center;
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  width: 80px;
+  margin: auto;
+}
