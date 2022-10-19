@@ -2,8 +2,11 @@
   padding-left: 0;
   margin-left: 20px;
   margin-right: 20px;
-  overflow-y: auto;
+  overflow: auto;
   height: 75vh;
   padding-top: 20px;
   max-width: 350px;
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
 }

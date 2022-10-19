@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="d-flex justify-content-center">
         <div className="taskApp">
           <h1 style={{ textAlign: "center", paddingBottom: "20px" }}>
