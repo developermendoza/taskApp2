@@ -105,9 +105,12 @@ const TaskList = ({ todoList, setTodoList }) => {
       <ul
         style={{
           paddingLeft: "0",
+          marginLeft: "20px",
+          marginRight: "20px",
           overflowY: "auto",
-          height: "60vh",
+          height: "75vh",
           paddingTop: "20px",
+          maxWidth: "350px",
         }}
       >
         {todoList.map((todo) => (
