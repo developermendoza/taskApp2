@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { AiOutlinePlus } from "react-icons/ai";
+import styles from "./AddTask.module.css";
 
 const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
   const [show, setShow] = useState(false);
@@ -42,16 +43,13 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
         bottom: "0",
         left: "0",
         right: "0",
-        background: "white",
         padding: "10px 0",
+        background:
+          "-moz-linear-gradient(top, rgba(30,87,153,0) 0%, rgba(41,137,216,0) 50%, rgba(34,125,203,1) 52%, rgba(125,185,232,1) 100%)",
       }}
     >
       <div style={{ textAlign: "center" }}>
-        <Button
-          variant="primary"
-          style={{ borderRadius: "50px", padding: "5px" }}
-          onClick={handleShow}
-        >
+        <Button className={styles.addTask} onClick={handleShow}>
           <AiOutlinePlus style={{ fontSize: "70px", padding: "5px 0" }} />
         </Button>
       </div>
