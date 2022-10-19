@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import AddTask from "./AddTask";
 import TaskListItem from "./TaskListItem";
+import styles from "./TaskList.module.css";
 
 const TaskList = ({ todoList, setTodoList }) => {
   const [todoItemEdit, settodoItemEdit] = useState("");
@@ -100,19 +101,10 @@ const TaskList = ({ todoList, setTodoList }) => {
       setEditItem(e.target.value);
     }
   };
+  console.log("todoList: ", todoList);
   return (
     <div>
-      <ul
-        style={{
-          paddingLeft: "0",
-          marginLeft: "20px",
-          marginRight: "20px",
-          overflowY: "auto",
-          height: "75vh",
-          paddingTop: "20px",
-          maxWidth: "350px",
-        }}
-      >
+      <ul className={styles.taskList}>
         {todoList.map((todo) => (
           <li key={todo._id} className="d-flex">
             <TaskListItem

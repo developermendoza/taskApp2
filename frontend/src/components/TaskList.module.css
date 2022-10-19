@@ -1,0 +1,9 @@
+.taskList {
+  padding-left: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  overflow-y: auto;
+  height: 75vh;
+  padding-top: 20px;
+  max-width: 350px;
+}

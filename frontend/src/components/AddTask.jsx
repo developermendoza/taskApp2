@@ -44,7 +44,6 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
         left: "0",
         right: "0",
         padding: "10px 0",
-        background: "transparent",
       }}
     >
       <div style={{ textAlign: "center" }}>
