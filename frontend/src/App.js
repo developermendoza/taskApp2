@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-
+import TaskAppTitle from "./components/TaskAppTitle";
+import TaskList from "./components/TaskList";
+import Navbar from "./components/Navbar";
 function App() {
   const [todoList, setTodoList] = useState([]);
   useEffect(() => {
@@ -16,12 +18,18 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <ul>
-        {todoList.map((todo) => (
-          <li key={todo._id}>{todo.item}</li>
-        ))}
-      </ul>
+    <div>
+      <Navbar />
+      <div className="d-flex justify-content-center">
+        <div className="taskApp">
+          <h1 style={{ textAlign: "center", paddingBottom: "20px" }}>
+            <TaskAppTitle title="My Task List" />
+          </h1>
+          <div>
+            <TaskList todoList={todoList} setTodoList={setTodoList} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

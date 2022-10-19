@@ -1,0 +1,18 @@
+.taskListItem {
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  background: white;
+  padding: 15px 25px;
+  margin-bottom: 25px;
+  border-radius: 50px;
+}
+
+input.checkbox {
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.taskListItemName {
+  cursor: pointer;
+}
+
+/* Lowering the shadow */
