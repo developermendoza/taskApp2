@@ -20,3 +20,12 @@ body {
 .is-completed-loading {
   height: 20px;
 }
+
+/* .modal-content {
+  background: #ddd;
+} */
+
+.modal-body {
+  padding-left: 0;
+  padding-right: 0;
+}

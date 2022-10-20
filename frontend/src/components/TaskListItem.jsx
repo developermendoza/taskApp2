@@ -40,16 +40,15 @@ const TaskListItem = ({
               style={{
                 fontSize: "11px",
                 position: "absolute",
-                left: "40px",
+                left: "-105px",
                 right: "5px",
-                bottom: "-25px",
+                bottom: "-13px",
                 textAlign: "center",
                 color: "#CECECE",
-                fontStyle: "italic",
                 fontWeight: "bold",
               }}
             >
-              Added on {moment(todo.date).format("ddd MM-DD-YYYY")}
+              {moment(todo.date).format("ddd DD MMM YYYY")}
             </p>
           </div>
         </Col>

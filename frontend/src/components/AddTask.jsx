@@ -48,27 +48,81 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
         </Button>
       </div>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Header style={{ borderBottom: "0" }}>
+          <Modal.Title style={{ margin: "auto" }}>New Todo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleOnSubmit} id="addTodoForm">
             <Form.Group role="form" className="mb-3" controlId="formText">
               <Form.Control
-                placeholder="e.x. Go to the gym"
+                placeholder="Title"
                 onChange={handleOnChange}
                 value={todoItem}
+                autoFocus
+                className={styles.addTaskTitleInput}
+                style={{
+                  borderTop: "0",
+                  borderLeft: "0",
+                  borderRight: "0",
+                  borderRadius: "0",
+                  outline: "0",
+                  width: "90%",
+                  margin: "auto",
+                  paddingLeft: "0",
+                }}
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Control
+                as="textarea"
+                rows={8}
+                placeholder="Notes"
+                style={{
+                  borderTop: "37px solid #eee",
+                  borderBottom: "37px solid #eee",
+                  borderRadius: "0",
+                  paddingLeft: "25px",
+                  boxShadow: "none",
+                }}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
+        <Modal.Footer
+          style={{
+            borderTop: "0",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Button
+            style={{
+              background: "transparent",
+              color: "red",
+              border: "none",
+              outline: "none",
+              fontWeight: "bold",
+            }}
+            variant="secondary"
+            onClick={handleClose}
+          >
+            Cancel
           </Button>
-          <Button type="submit" form="addTodoForm">
-            <a href="#topList"></a>
-            Save To Do
+          <Button
+            style={{
+              background: "transparent",
+              color: "grey",
+              border: "none",
+              outline: "none",
+              fontWeight: "bold",
+            }}
+            type="submit"
+            form="addTodoForm"
+          >
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
