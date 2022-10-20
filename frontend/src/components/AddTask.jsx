@@ -11,6 +11,10 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
 
     if (todoItem !== "") {
       fetch("https://task-app123465.herokuapp.com/addTodo", {
@@ -63,6 +67,7 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
             Close
           </Button>
           <Button type="submit" form="addTodoForm">
+            <a href="#topList"></a>
             Save To Do
           </Button>
         </Modal.Footer>

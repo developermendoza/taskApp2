@@ -9,8 +9,15 @@ const TaskList = ({ todoList, setTodoList }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [todoItem, settodoItem] = useState("");
   const [editItem, setEditItem] = useState("");
+  const [isTaskCompletedLoading, setIsTaskCompletedLoading] = useState(false);
 
   const handleCloseEdit = () => setShowEdit(false);
+
+  // const handleScroll = (event) => {
+  //   event.currentTarget.scrollTop = 473;
+  //   // console.log("scrollTop: ", event.currentTarget.scrollTop);
+  //   // console.log("offsetHeight: ", event.currentTarget.offsetHeight);
+  // };
 
   const handleShowEdit = (id) => {
     setShowEdit(true);
@@ -42,6 +49,8 @@ const TaskList = ({ todoList, setTodoList }) => {
   const handleTodoComplete = (task) => {
     const isTaskCompleted = !task.completed;
     console.log("isTaskCompleted: ", isTaskCompleted);
+    setIsTaskCompletedLoading(true);
+    // setTimeout(() => {
     fetch("https://task-app123465.herokuapp.com/updateTodo", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -52,19 +61,25 @@ const TaskList = ({ todoList, setTodoList }) => {
       }),
     })
       .then(function (res) {
+        // setTimeout(() => {}, 2000);
         return res.json();
       })
       .then(function (data) {
         console.log("data from the completed task: ", data);
+
         const newList = todoList.map((obj) => {
           if (obj._id === data._id) {
             return { ...obj, completed: data.completed };
           }
           return obj;
         });
-        console.log("newList: ", newList);
+
         setTodoList(newList);
+      })
+      .finally(() => {
+        setIsTaskCompletedLoading(false);
       });
+    // }, 2000);
   };
 
   const handleOnSubmitEdit = (e) => {
@@ -104,7 +119,7 @@ const TaskList = ({ todoList, setTodoList }) => {
   console.log("todoList: ", todoList);
   return (
     <div>
-      <ul className={styles.taskList}>
+      <ul className={styles.taskList} id="topList">
         {todoList.map((todo) => (
           <li key={todo._id} className="d-flex">
             <TaskListItem
@@ -112,6 +127,7 @@ const TaskList = ({ todoList, setTodoList }) => {
               handleShowEdit={handleShowEdit}
               handleDeleteItem={handleDeleteItem}
               handleTodoComplete={handleTodoComplete}
+              isTaskCompletedLoading={isTaskCompletedLoading}
             />
           </li>
         ))}

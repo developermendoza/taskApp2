@@ -1,9 +1,21 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import styles from "./TaskListItem.module.css";
 import moment from "moment";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
+import BeatLoader from "react-spinners/BeatLoader";
 
-const TaskListItem = ({ todo, handleShowEdit, handleTodoComplete }) => {
+const TaskListItem = ({
+  todo,
+  handleShowEdit,
+  handleTodoComplete,
+  isTaskCompletedLoading,
+}) => {
+  const override = (CSSProperties = {
+    marginTop: "-32px",
+    marginLeft: "-4px",
+    width: "50px",
+  });
+  console.log("isTaskCompletedLoading: ", isTaskCompletedLoading);
   return (
     <Container className={styles.taskListItem}>
       <Row>
@@ -47,6 +59,21 @@ const TaskListItem = ({ todo, handleShowEdit, handleTodoComplete }) => {
           </div>
         </Col>
         <Col xs={2} style={{ textAlign: "center" }}>
+          {/* <div
+            className="is-completed-loading"
+            style={{
+              display: isTaskCompletedLoading === true ? "block" : "none",
+            }}
+          >
+            <BeatLoader
+              cssOverride={override}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+              loading={isTaskCompletedLoading}
+              size={8}
+            />
+          </div> */}
+
           <Form.Group controlId={`formid${todo._id}`}>
             <Form.Check
               name={`formid${todo._id}`}
@@ -54,6 +81,13 @@ const TaskListItem = ({ todo, handleShowEdit, handleTodoComplete }) => {
               checked={todo.completed}
               onChange={() => handleTodoComplete(todo)}
             />
+            {/* <BeatLoader
+              cssOverride={override}
+              aria-label="Loading Spinner"
+              data-testid={`loader-${todo._id}`}
+              loading={isTaskCompletedLoading}
+              size={9}
+            /> */}
           </Form.Group>
         </Col>
       </Row>
