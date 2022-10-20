@@ -33,7 +33,7 @@ function App() {
               paddingTop: "20px",
             }}
           >
-            <TaskAppTitle title="My Task List" />
+            <TaskAppTitle title="My Todo List" />
           </h1>
           <div>
             <TaskList todoList={todoList} setTodoList={setTodoList} />
