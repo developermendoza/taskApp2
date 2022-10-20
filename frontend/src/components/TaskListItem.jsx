@@ -2,75 +2,40 @@ import React from "react";
 import styles from "./TaskListItem.module.css";
 import moment from "moment";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
-import BeatLoader from "react-spinners/BeatLoader";
+// import RotateLoader from "react-spinners/RotateLoader";
+
+import ClipLoader from "react-spinners/ClipLoader";
 
 const TaskListItem = ({
   todo,
   handleShowEdit,
   handleTodoComplete,
+  isCompleteTaskPressed,
   isTaskCompletedLoading,
 }) => {
-  console.log("isTaskCompletedLoading: ", isTaskCompletedLoading);
   return (
-    <Container className={styles.taskListItem}>
+    <Container className={styles.taskListItemContainer}>
       <Row>
         <Col
           xs={10}
           className={styles.taskListItemName}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            position: "relative",
-          }}
           onClick={() => handleShowEdit(todo._id)}
         >
           <div>
             <p
               key={todo._id}
-              style={{
-                textDecoration: todo.completed && "line-through",
-                color: todo.completed && "#e2e2e2",
-                fontWeight: "700",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-                maxWidth: "200px",
-              }}
+              className={`${styles.taskListItem} ${
+                todo.completed && styles.completed
+              }`}
             >
               {todo.item}{" "}
             </p>
-            <p
-              style={{
-                fontSize: "11px",
-                position: "absolute",
-                left: "-105px",
-                right: "5px",
-                bottom: "-13px",
-                textAlign: "center",
-                color: "#CECECE",
-                fontWeight: "bold",
-              }}
-            >
+            <p className={styles.taskListItemDate} style={{}}>
               {moment(todo.date).format("ddd DD MMM YYYY")}
             </p>
           </div>
         </Col>
         <Col xs={2} style={{ textAlign: "center" }}>
-          {/* <div
-            className="is-completed-loading"
-            style={{
-              display: isTaskCompletedLoading === true ? "block" : "none",
-            }}
-          >
-            <BeatLoader
-              cssOverride={override}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-              loading={isTaskCompletedLoading}
-              size={8}
-            />
-          </div> */}
-
           <Form.Group controlId={`formid${todo._id}`}>
             <Form.Check
               name={`formid${todo._id}`}
@@ -78,14 +43,30 @@ const TaskListItem = ({
               checked={todo.completed}
               onChange={() => handleTodoComplete(todo)}
             />
-            {/* <BeatLoader
-              cssOverride={override}
-              aria-label="Loading Spinner"
-              data-testid={`loader-${todo._id}`}
-              loading={isTaskCompletedLoading}
-              size={9}
-            /> */}
           </Form.Group>
+          <div
+            style={{
+              display:
+                isCompleteTaskPressed[`${todo._id}`] === todo._id
+                  ? "block"
+                  : "none",
+            }}
+          >
+            <ClipLoader
+              cssOverride={{
+                display: "block",
+                margin: "0 auto",
+                position: "absolute",
+                top: "20px",
+                borderWidth: "5px",
+              }}
+              size={40}
+              color="dodgerblue"
+              aria-label="Loading Spinner"
+              data-testid={`formid${todo._id}`}
+              loading={isTaskCompletedLoading}
+            />
+          </div>
         </Col>
       </Row>
     </Container>

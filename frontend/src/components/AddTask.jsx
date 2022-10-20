@@ -58,7 +58,6 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
                 placeholder="Title"
                 onChange={handleOnChange}
                 value={todoItem}
-                autoFocus
                 className={styles.addTaskTitleInput}
                 style={{
                   borderTop: "0",

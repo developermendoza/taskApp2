@@ -11,13 +11,9 @@ const TaskList = ({ todoList, setTodoList }) => {
   const [editItem, setEditItem] = useState("");
   const [isTaskCompletedLoading, setIsTaskCompletedLoading] = useState(false);
 
-  const handleCloseEdit = () => setShowEdit(false);
+  const [isCompleteTaskPressed, setIsCompleteTaskPressed] = useState({});
 
-  // const handleScroll = (event) => {
-  //   event.currentTarget.scrollTop = 473;
-  //   // console.log("scrollTop: ", event.currentTarget.scrollTop);
-  //   // console.log("offsetHeight: ", event.currentTarget.offsetHeight);
-  // };
+  const handleCloseEdit = () => setShowEdit(false);
 
   const handleShowEdit = (id) => {
     setShowEdit(true);
@@ -47,21 +43,20 @@ const TaskList = ({ todoList, setTodoList }) => {
     }
   };
   const handleTodoComplete = (task) => {
-    const isTaskCompleted = !task.completed;
-    console.log("isTaskCompleted: ", isTaskCompleted);
-    setIsTaskCompletedLoading(true);
-    // setTimeout(() => {
+    setIsTaskCompletedLoading(!task.completed);
+    setIsCompleteTaskPressed({
+      [task._id]: task._id,
+    });
     fetch("https://task-app123465.herokuapp.com/updateTodo", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         id: task._id,
         item: task.item,
-        completed: isTaskCompleted,
+        completed: !task.completed,
       }),
     })
       .then(function (res) {
-        // setTimeout(() => {}, 2000);
         return res.json();
       })
       .then(function (data) {
@@ -78,8 +73,8 @@ const TaskList = ({ todoList, setTodoList }) => {
       })
       .finally(() => {
         setIsTaskCompletedLoading(false);
+        setIsCompleteTaskPressed({});
       });
-    // }, 2000);
   };
 
   const handleOnSubmitEdit = (e) => {
@@ -128,6 +123,7 @@ const TaskList = ({ todoList, setTodoList }) => {
               handleDeleteItem={handleDeleteItem}
               handleTodoComplete={handleTodoComplete}
               isTaskCompletedLoading={isTaskCompletedLoading}
+              isCompleteTaskPressed={isCompleteTaskPressed}
             />
           </li>
         ))}
