@@ -22,7 +22,17 @@ function App() {
       {/* <Navbar /> */}
       <div className="d-flex justify-content-center">
         <div className="taskApp">
-          <h1 style={{ textAlign: "center", paddingBottom: "20px" }}>
+          <h1
+            style={{
+              textAlign: "center",
+              paddingBottom: "20px",
+              color: "white",
+              textTransform: "uppercase",
+              fontWeight: "bold",
+              fontFamily: "monospace",
+              paddingTop: "20px",
+            }}
+          >
             <TaskAppTitle title="My Task List" />
           </h1>
           <div>
