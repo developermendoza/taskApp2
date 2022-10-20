@@ -5,9 +5,14 @@ import styles from "./AddTask.module.css";
 
 const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
   const [show, setShow] = useState(false);
+  const [didUserClickAdd, setDidUserClickAdd] = useState(false);
   const handleClose = () => setShow(false);
 
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setDidUserClickAdd(true);
+    setShow(true);
+  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -40,10 +45,17 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
     settodoItem(value);
   };
 
+  console.log("todoList: ", todoList.length);
+
   return (
     <>
       <div className={styles.addTaskContainer}>
-        <Button className={styles.addTask} onClick={handleShow}>
+        <Button
+          className={`${styles.addTask} ${
+            todoList.length === 0 && !didUserClickAdd ? styles.heartbeat : ""
+          } `}
+          onClick={handleShow}
+        >
           <AiOutlinePlus style={{ fontSize: "70px", padding: "5px 0" }} />
         </Button>
       </div>

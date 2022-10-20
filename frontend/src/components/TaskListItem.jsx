@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./TaskListItem.module.css";
 import moment from "moment";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
-// import RotateLoader from "react-spinners/RotateLoader";
+import { Form, Container, Row, Col } from "react-bootstrap";
 
 import ClipLoader from "react-spinners/ClipLoader";
 
