@@ -136,33 +136,77 @@ const TaskList = ({ todoList, setTodoList }) => {
       />
 
       <Modal show={showEdit} onHide={handleCloseEdit}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit List Item</Modal.Title>
+        <Modal.Header style={{ borderBottom: "0" }}>
+          <Modal.Title style={{ margin: "auto" }}>Edit Todo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleOnSubmitEdit} id="addTodoForm">
+          <Form onSubmit={handleOnSubmitEdit} id="editTodoForm">
             <Form.Group role="form" className="mb-3" controlId="formText">
               <Form.Control
-                style={{ fontStyle: "italic" }}
+                style={{
+                  fontStyle: "italic",
+                  borderRadius: "0",
+                  borderTop: "0",
+                  borderLeft: "0",
+                  borderRight: "0",
+                  width: "90%",
+                  margin: "auto",
+                  boxShadow: "none",
+                }}
                 placeholder={todoItemEdit[0]?.item}
                 onChange={handleOnChangeEdit}
                 value={editItem}
               />
             </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea2"
+            >
+              <Form.Control
+                as="textarea"
+                rows={8}
+                placeholder="Notes"
+                style={{
+                  borderTop: "37px solid #eee",
+                  borderBottom: "37px solid #eee",
+                  borderRadius: "0",
+                  paddingLeft: "30px",
+                  boxShadow: "none",
+                }}
+              />
+            </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer
+          style={{
+            borderTop: "0",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <Button
             variant="danger"
+            style={{
+              background: "transparent",
+              color: "red",
+              border: "none",
+              fontWeight: "bold",
+            }}
             onClick={() => handleDeleteItem(todoItemEdit[0]?._id)}
           >
-            Delete
+            DELETE
           </Button>
-          <Button variant="secondary" onClick={handleCloseEdit}>
-            Close
-          </Button>
-          <Button type="submit" form="addTodoForm">
-            Save To Do
+          <Button
+            type="submit"
+            form="editTodoForm"
+            style={{
+              background: "transparent",
+              color: "ORANGE",
+              border: "none",
+              fontWeight: "bold",
+            }}
+          >
+            EDIT TODO
           </Button>
         </Modal.Footer>
       </Modal>

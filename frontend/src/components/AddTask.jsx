@@ -59,16 +59,6 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
                 onChange={handleOnChange}
                 value={todoItem}
                 className={styles.addTaskTitleInput}
-                style={{
-                  borderTop: "0",
-                  borderLeft: "0",
-                  borderRight: "0",
-                  borderRadius: "0",
-                  outline: "0",
-                  width: "90%",
-                  margin: "auto",
-                  paddingLeft: "0",
-                }}
               />
             </Form.Group>
             <Form.Group
@@ -79,49 +69,21 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
                 as="textarea"
                 rows={8}
                 placeholder="Notes"
-                style={{
-                  borderTop: "37px solid #eee",
-                  borderBottom: "37px solid #eee",
-                  borderRadius: "0",
-                  paddingLeft: "25px",
-                  boxShadow: "none",
-                }}
+                className={styles.addTaskNotesInput}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer
-          style={{
-            borderTop: "0",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
+        <Modal.Footer className={styles.AddTaskModalFooter}>
           <Button
-            style={{
-              background: "transparent",
-              color: "red",
-              border: "none",
-              outline: "none",
-              fontWeight: "bold",
-            }}
+            className={styles.AddTaskCancelBtn}
             variant="secondary"
             onClick={handleClose}
           >
-            Cancel
+            CANCEL
           </Button>
-          <Button
-            style={{
-              background: "transparent",
-              color: "grey",
-              border: "none",
-              outline: "none",
-              fontWeight: "bold",
-            }}
-            type="submit"
-            form="addTodoForm"
-          >
-            Save
+          <Button type="submit" form="addTodoForm">
+            SAVE
           </Button>
         </Modal.Footer>
       </Modal>
