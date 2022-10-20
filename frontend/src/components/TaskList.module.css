@@ -24,3 +24,24 @@
   margin: auto;
   box-shadow: none;
 }
+
+.editTaskNotesInput {
+  border-top: 37px solid #eee;
+  border-bottom: 37px solid #eee;
+  border-radius: 0;
+  padding-left: 30px;
+  box-shadow: none;
+}
+.editTaskDeleteBtn {
+  background: transparent;
+  color: red;
+  border: none;
+  font-weight: bold;
+}
+
+.editTaskEditBtn {
+  background: transparent;
+  color: ORANGE;
+  border: none;
+  font-weight: bold;
+}

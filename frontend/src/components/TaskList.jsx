@@ -143,16 +143,7 @@ const TaskList = ({ todoList, setTodoList }) => {
           <Form onSubmit={handleOnSubmitEdit} id="editTodoForm">
             <Form.Group role="form" className="mb-3" controlId="formText">
               <Form.Control
-                style={{
-                  fontStyle: "italic",
-                  borderRadius: "0",
-                  borderTop: "0",
-                  borderLeft: "0",
-                  borderRight: "0",
-                  width: "90%",
-                  margin: "auto",
-                  boxShadow: "none",
-                }}
+                className={styles.editTaskInput}
                 placeholder={todoItemEdit[0]?.item}
                 onChange={handleOnChangeEdit}
                 value={editItem}
@@ -166,13 +157,7 @@ const TaskList = ({ todoList, setTodoList }) => {
                 as="textarea"
                 rows={8}
                 placeholder="Notes"
-                style={{
-                  borderTop: "37px solid #eee",
-                  borderBottom: "37px solid #eee",
-                  borderRadius: "0",
-                  paddingLeft: "30px",
-                  boxShadow: "none",
-                }}
+                className={styles.editTaskNotesInput}
               />
             </Form.Group>
           </Form>
@@ -186,6 +171,7 @@ const TaskList = ({ todoList, setTodoList }) => {
         >
           <Button
             variant="danger"
+            className={styles.editTaskDeleteBtn}
             style={{
               background: "transparent",
               color: "red",
@@ -197,14 +183,9 @@ const TaskList = ({ todoList, setTodoList }) => {
             DELETE
           </Button>
           <Button
+            className={styles.editTaskEditBtn}
             type="submit"
             form="editTodoForm"
-            style={{
-              background: "transparent",
-              color: "ORANGE",
-              border: "none",
-              fontWeight: "bold",
-            }}
           >
             EDIT TODO
           </Button>
