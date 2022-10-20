@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import styles from "./TaskListItem.module.css";
 import moment from "moment";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
@@ -10,11 +10,6 @@ const TaskListItem = ({
   handleTodoComplete,
   isTaskCompletedLoading,
 }) => {
-  const override = (CSSProperties = {
-    marginTop: "-32px",
-    marginLeft: "-4px",
-    width: "50px",
-  });
   console.log("isTaskCompletedLoading: ", isTaskCompletedLoading);
   return (
     <Container className={styles.taskListItem}>
