@@ -31,8 +31,11 @@ const TaskListItem = ({
                 textDecoration: todo.completed && "line-through",
                 color: todo.completed && "#e2e2e2",
                 fontWeight: "700",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+                maxWidth: "200px",
               }}
-              className="d-flex"
             >
               {todo.item}{" "}
             </p>
