@@ -114,13 +114,13 @@ const TaskList = ({ todoList, setTodoList, todoLoading }) => {
       [name]: value,
     });
   };
-  console.log("todoLoading", todoLoading);
   return (
     <div>
       <ul className={styles.taskList} id="topList">
         {todoLoading &&
           [1, 2, 3, 4, 5, 6].map((item) => (
             <li
+              key={item}
               style={{
                 background: "white",
                 padding: "15px 25px",
