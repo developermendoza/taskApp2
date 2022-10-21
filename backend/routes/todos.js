@@ -1,9 +1,8 @@
 const Todo = require("../schemas/todo");
 
 const getTodos = async (req, res) => {
-  console.log("process.env.NODE_ENV :", process.env.NODE_ENV);
   try {
-    const todos = await Todo.find({}).sort({ date: -1 });
+    const todos = await Todo.find({}).sort({ date: "desc" });
     res.send(todos);
   } catch (error) {
     console.log("error: ", error);
@@ -22,18 +21,17 @@ const deleteTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
   try {
-    const { id, item, completed } = req.body;
-    console.log("completed: ", completed);
+    const { _id, item, completed, note } = req.body.todo;
     const data = await Todo.findByIdAndUpdate(
-      id,
+      _id,
       {
         item,
         completed,
+        note,
         updatedAt: new Date(),
       },
       { new: true }
     );
-    console.log("new data: ", data);
     res.send(data);
   } catch (error) {
     console.log("error: ", error);
@@ -42,11 +40,12 @@ const updateTodo = async (req, res) => {
 
 const addTodo = async (req, res) => {
   try {
-    const { todoItem } = req.body;
+    const { item, note } = req.body.todo;
     const newTodo = new Todo({
-      item: todoItem,
+      item: item,
       date: new Date(),
       completed: false,
+      note,
     });
 
     const data = await newTodo.save();

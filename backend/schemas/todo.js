@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const todoSchema = new mongoose.Schema({
   item: String,
   note: String,
-  date: String,
+  date: Date,
   completed: Boolean,
-  updatedAt: String,
+  updatedAt: Date,
 });
 
 const Todo = mongoose.model("Todo", todoSchema);

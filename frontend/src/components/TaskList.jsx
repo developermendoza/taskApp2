@@ -5,10 +5,8 @@ import TaskListItem from "./TaskListItem";
 import styles from "./TaskList.module.css";
 
 const TaskList = ({ todoList, setTodoList }) => {
-  const [todoItemEdit, settodoItemEdit] = useState("");
   const [showEdit, setShowEdit] = useState(false);
-  const [todoItem, settodoItem] = useState("");
-  const [editItem, setEditItem] = useState("");
+  const [todo, setTodo] = useState({ item: "", note: "" });
   const [isTaskCompletedLoading, setIsTaskCompletedLoading] = useState(false);
 
   const [isCompleteTaskPressed, setIsCompleteTaskPressed] = useState({});
@@ -17,10 +15,8 @@ const TaskList = ({ todoList, setTodoList }) => {
 
   const handleShowEdit = (id) => {
     setShowEdit(true);
-    console.log(id);
-    const editItem = todoList.filter((todo) => todo._id === id);
-    console.log(editItem);
-    settodoItemEdit(editItem);
+    const findTodoById = todoList.find((todo) => todo._id === id);
+    setTodo(findTodoById);
   };
 
   const handleDeleteItem = (id) => {
@@ -43,6 +39,11 @@ const TaskList = ({ todoList, setTodoList }) => {
     }
   };
   const handleTodoComplete = (task) => {
+    const updatedTodo = {
+      ...task,
+      completed: !task.completed,
+    };
+
     setIsTaskCompletedLoading(!task.completed);
     setIsCompleteTaskPressed({
       [task._id]: task._id,
@@ -51,17 +52,13 @@ const TaskList = ({ todoList, setTodoList }) => {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: task._id,
-        item: task.item,
-        completed: !task.completed,
+        todo: updatedTodo,
       }),
     })
       .then(function (res) {
         return res.json();
       })
       .then(function (data) {
-        console.log("data from the completed task: ", data);
-
         const newList = todoList.map((obj) => {
           if (obj._id === data._id) {
             return { ...obj, completed: data.completed };
@@ -80,14 +77,11 @@ const TaskList = ({ todoList, setTodoList }) => {
   const handleOnSubmitEdit = (e) => {
     e.preventDefault();
 
-    if (editItem !== "") {
+    if (todo.item !== "") {
       fetch("https://task-app123465.herokuapp.com/updateTodo", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: todoItemEdit[0]._id,
-          item: editItem,
-        }),
+        body: JSON.stringify({ todo }),
       })
         .then(function (res) {
           return res.json();
@@ -95,23 +89,29 @@ const TaskList = ({ todoList, setTodoList }) => {
         .then(function (data) {
           const newList = todoList.map((obj) => {
             if (obj._id === data._id) {
-              return { ...obj, item: editItem };
+              return {
+                ...obj,
+                item: data.item,
+                note: data.note,
+                completed: data.completed,
+              };
             }
             return obj;
           });
-          setTodoList(newList);
-          settodoItemEdit("");
-          setEditItem("");
           handleCloseEdit();
+          setTodoList(newList);
         });
     }
   };
   const handleOnChangeEdit = (e) => {
-    if (e.target.value !== "") {
-      setEditItem(e.target.value);
-    }
+    const { name, value } = e.target;
+
+    setTodo({
+      ...todo,
+      [name]: value,
+    });
   };
-  console.log("todoList: ", todoList);
+
   return (
     <div>
       <ul className={styles.taskList} id="topList">
@@ -129,10 +129,10 @@ const TaskList = ({ todoList, setTodoList }) => {
         ))}
       </ul>
       <AddTask
-        todoItem={todoItem}
+        todoItem={todo}
         todoList={todoList}
         setTodoList={setTodoList}
-        settodoItem={settodoItem}
+        setTodo={setTodo}
       />
 
       <Modal show={showEdit} onHide={handleCloseEdit}>
@@ -144,9 +144,10 @@ const TaskList = ({ todoList, setTodoList }) => {
             <Form.Group role="form" className="mb-3" controlId="formText">
               <Form.Control
                 className={styles.editTaskInput}
-                placeholder={todoItemEdit[0]?.item}
+                name="item"
+                placeholder={todo.item}
                 onChange={handleOnChangeEdit}
-                value={editItem}
+                value={todo.item}
               />
             </Form.Group>
             <Form.Group
@@ -155,8 +156,11 @@ const TaskList = ({ todoList, setTodoList }) => {
             >
               <Form.Control
                 as="textarea"
+                name="note"
                 rows={8}
-                placeholder="Notes"
+                placeholder={todo.note}
+                value={todo.note}
+                onChange={handleOnChangeEdit}
                 className={styles.editTaskNotesInput}
               />
             </Form.Group>
@@ -178,7 +182,7 @@ const TaskList = ({ todoList, setTodoList }) => {
               border: "none",
               fontWeight: "bold",
             }}
-            onClick={() => handleDeleteItem(todoItemEdit[0]?._id)}
+            onClick={() => handleDeleteItem(todo._id)}
           >
             DELETE
           </Button>

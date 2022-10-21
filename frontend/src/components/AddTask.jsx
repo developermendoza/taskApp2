@@ -4,11 +4,11 @@ import { AiOutlinePlus } from "react-icons/ai";
 import styles from "./AddTask.module.css";
 
 const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
+  const [todo, setTodo] = useState({ item: "", note: "" });
   const [show, setShow] = useState(false);
   const [didUserClickAdd, setDidUserClickAdd] = useState(false);
   const handleClose = () => setShow(false);
 
-  // const handleShow = () => setShow(true);
   const handleShow = () => {
     setDidUserClickAdd(true);
     setShow(true);
@@ -21,12 +21,12 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
       behavior: "smooth",
     });
 
-    if (todoItem !== "") {
+    if (todo !== "") {
       fetch("https://task-app123465.herokuapp.com/addTodo", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          todoItem,
+          todo,
         }),
       })
         .then(function (res) {
@@ -34,18 +34,20 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
         })
         .then(function (data) {
           setTodoList([data, ...todoList]);
-          settodoItem("");
+          // settodoItem("");
+          setTodo({ item: "", note: "" });
           handleClose();
         });
     }
   };
 
   const handleOnChange = (e) => {
-    const { value } = e.target;
-    settodoItem(value);
+    const { value, name } = e.target;
+    setTodo({
+      ...todo,
+      [name]: value,
+    });
   };
-
-  console.log("todoList: ", todoList.length);
 
   return (
     <>
@@ -69,7 +71,8 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
               <Form.Control
                 placeholder="Title"
                 onChange={handleOnChange}
-                value={todoItem}
+                name="item"
+                value={todo.item}
                 className={styles.addTaskTitleInput}
               />
             </Form.Group>
@@ -79,8 +82,11 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
             >
               <Form.Control
                 as="textarea"
+                name="note"
                 rows={8}
                 placeholder="Notes"
+                value={todo.note}
+                onChange={handleOnChange}
                 className={styles.addTaskNotesInput}
               />
             </Form.Group>
