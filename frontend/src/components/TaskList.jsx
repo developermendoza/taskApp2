@@ -3,6 +3,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 import AddTask from "./AddTask";
 import TaskListItem from "./TaskListItem";
 import styles from "./TaskList.module.css";
+import { FaTrashAlt } from "react-icons/fa";
 
 const TaskList = ({ todoList, setTodoList }) => {
   const [showEdit, setShowEdit] = useState(false);
@@ -137,7 +138,20 @@ const TaskList = ({ todoList, setTodoList }) => {
 
       <Modal show={showEdit} onHide={handleCloseEdit}>
         <Modal.Header style={{ borderBottom: "0" }}>
+          <div
+            onClick={() => handleDeleteItem(todo._id)}
+            style={{
+              position: "absolute",
+              right: "20px",
+              top: "20px",
+              color: "lightgrey",
+              cursor: "pointer",
+            }}
+          >
+            <FaTrashAlt />
+          </div>
           <Modal.Title style={{ margin: "auto" }}>Edit Todo</Modal.Title>
+          {/* <p onClick={handleCloseEdit}>CANCEL</p> */}
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleOnSubmitEdit} id="editTodoForm">
@@ -173,7 +187,7 @@ const TaskList = ({ todoList, setTodoList }) => {
             justifyContent: "space-between",
           }}
         >
-          <Button
+          {/* <Button
             variant="danger"
             className={styles.editTaskDeleteBtn}
             style={{
@@ -185,6 +199,14 @@ const TaskList = ({ todoList, setTodoList }) => {
             onClick={() => handleDeleteItem(todo._id)}
           >
             DELETE
+          </Button> */}
+
+          <Button
+            variant="secondary"
+            className={styles.editTaskCancelBtn}
+            onClick={handleCloseEdit}
+          >
+            CANCEL
           </Button>
           <Button
             className={styles.editTaskEditBtn}

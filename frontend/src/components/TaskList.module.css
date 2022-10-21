@@ -44,4 +44,35 @@
   color: ORANGE;
   border: none;
   font-weight: bold;
+  width: 40%;
+  letter-spacing: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.editTaskEditBtn:hover {
+  background-color: orange;
+  color: white;
+}
+
+button.editTaskCancelBtn {
+  background-color: transparent;
+  font-weight: bold;
+  color: grey;
+  border: 0;
+  width: 40%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  letter-spacing: 5px;
+}
+
+button.editTaskCancelBtn:hover {
+  background-color: grey;
+  color: black;
+}
+
+button.editTaskCancelBtn:hover {
+  background: grey;
+  border-color: red 2px solid;
+  color: white;
 }
