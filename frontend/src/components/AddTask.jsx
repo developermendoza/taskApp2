@@ -100,7 +100,11 @@ const AddTask = ({ todoItem, todoList, setTodoList, settodoItem }) => {
           >
             CANCEL
           </Button>
-          <Button type="submit" form="addTodoForm">
+          <Button
+            type="submit"
+            form="addTodoForm"
+            className={styles.addTaskSaveBtn}
+          >
             SAVE
           </Button>
         </Modal.Footer>
