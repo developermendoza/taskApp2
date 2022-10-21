@@ -138,18 +138,25 @@ const TaskList = ({ todoList, setTodoList }) => {
 
       <Modal show={showEdit} onHide={handleCloseEdit}>
         <Modal.Header style={{ borderBottom: "0" }}>
-          <div
+          <Button
+            className={styles.deleteTaskBtn}
             onClick={() => handleDeleteItem(todo._id)}
             style={{
+              background: "transparent",
               position: "absolute",
+              border: "none",
               right: "20px",
               top: "20px",
               color: "lightgrey",
               cursor: "pointer",
+              textAlign: "center",
             }}
           >
             <FaTrashAlt />
-          </div>
+            <p style={{ fontWeight: "bold", fontSize: "12px", color: "grey" }}>
+              Delete{" "}
+            </p>
+          </Button>
           <Modal.Title style={{ margin: "auto" }}>Edit Todo</Modal.Title>
           {/* <p onClick={handleCloseEdit}>CANCEL</p> */}
         </Modal.Header>

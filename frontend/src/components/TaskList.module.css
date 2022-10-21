@@ -76,3 +76,7 @@ button.editTaskCancelBtn:hover {
   border-color: red 2px solid;
   color: white;
 }
+
+.deleteTaskBtn p:hover {
+  color: red;
+}
