@@ -5,7 +5,9 @@ import TaskList from "./components/TaskList";
 import Navbar from "./components/Navbar";
 function App() {
   const [todoList, setTodoList] = useState([]);
+  const [todoLoading, setTodoLoading] = useState(false);
   useEffect(() => {
+    setTodoLoading(true);
     fetch("https://task-app123465.herokuapp.com/")
       .then((response) => {
         if (response.ok) {
@@ -14,7 +16,8 @@ function App() {
         throw response;
       })
       .then((data) => setTodoList(data))
-      .catch((error) => console.log("error: ", error));
+      .catch((error) => console.log("error: ", error))
+      .finally(() => setTodoLoading(false));
   }, []);
 
   return (
@@ -36,7 +39,11 @@ function App() {
             <TaskAppTitle title="My Todo List" />
           </h1>
           <div>
-            <TaskList todoList={todoList} setTodoList={setTodoList} />
+            <TaskList
+              todoList={todoList}
+              setTodoList={setTodoList}
+              todoLoading={todoLoading}
+            />
           </div>
         </div>
       </div>

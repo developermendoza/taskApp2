@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { Button, Form, Modal } from "react-bootstrap";
 import AddTask from "./AddTask";
 import TaskListItem from "./TaskListItem";
 import styles from "./TaskList.module.css";
 import { FaTrashAlt } from "react-icons/fa";
 
-const TaskList = ({ todoList, setTodoList }) => {
+const TaskList = ({ todoList, setTodoList, todoLoading }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [todo, setTodo] = useState({ item: "", note: "" });
   const [isTaskCompletedLoading, setIsTaskCompletedLoading] = useState(false);
@@ -112,10 +114,25 @@ const TaskList = ({ todoList, setTodoList }) => {
       [name]: value,
     });
   };
-
+  console.log("todoLoading", todoLoading);
   return (
     <div>
       <ul className={styles.taskList} id="topList">
+        {todoLoading &&
+          [1, 2, 3, 4, 5, 6].map((item) => (
+            <li
+              style={{
+                background: "white",
+                padding: "15px 25px",
+                borderRadius: "50px",
+                boxShadow: "rgb(0 0 0 / 45%) 0px 25px 20px -20px",
+                marginBottom: "25px",
+              }}
+            >
+              <Skeleton />
+              <Skeleton />
+            </li>
+          ))}
         {todoList.map((todo) => (
           <li key={todo._id} className="d-flex">
             <TaskListItem
@@ -158,6 +175,7 @@ const TaskList = ({ todoList, setTodoList }) => {
             </p>
           </Button>
           <Modal.Title style={{ margin: "auto" }}>Edit Todo</Modal.Title>
+          {/* <p>Task Completed!</p> */}
           {/* <p onClick={handleCloseEdit}>CANCEL</p> */}
         </Modal.Header>
         <Modal.Body>

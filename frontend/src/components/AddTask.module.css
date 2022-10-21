@@ -26,6 +26,7 @@ button.addTask:hover {
   right: 0;
   width: 80px;
   margin: auto;
+  z-index: 40;
 }
 
 input.addTaskTitleInput:focus,
