@@ -10,3 +10,10 @@
   <li>Express JS as the backend framework</li>
   <li>Mongoose framework used for Schemas and to communicate with the database</li>
 </ul>
+
+#### The frontend is build with the following tools:
+<ul>
+  <li>React as the main frontend JavaScript framework </li>
+  <li>React bootstrap to build the UI</li>
+  <li>Other tools include: react loading skeletons, react icons and react spinners</li>
+</ul>
