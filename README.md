@@ -17,3 +17,8 @@
   <li>React bootstrap to build the UI</li>
   <li>Other tools include: react loading skeletons, react icons and react spinners</li>
 </ul>
+
+## Getting started
+#### To run this application on your machine make sure you have <a href="https://nodejs.org/en/">https://nodejs.org/en/</a>, and to run it navigate to the backend folder on the terminal and type: nodemon start
+
+#### For the frontend install <a href="https://create-react-app.dev/">https://create-react-app.dev/</a>, and to run it go to the frontend folder on the terminal and type: yarn start 
